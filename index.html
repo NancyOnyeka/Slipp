@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Slipp. - the body bar</title>
+    <meta name="description" content="Shop Slipp. bath and body products. Turn your shower into your happy hour with The Squeakeasy, City Slicker, and Scenter of Attention collections.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        slipp: {
+                            yellow: '#FEF08A',
+                            teal: '#99F6E4',
+                            lime: '#D9F99D',
+                            pink: '#FBCFE8',
+                            blue: '#BFDBFE',
+                            purple: '#E9D5FF',
+                            dark: '#1F2937',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'bounce-slight': 'bounce-slight 2s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'bounce-slight': {
+                            '0%, 100%': { transform: 'translateY(-5%)' },
+                            '50%': { transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .category-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .category-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .view-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .view-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sub-nav-link {
+            position: relative;
+        }
+        .sub-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.3s ease;
+        }
+        .sub-nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-50 glass-nav">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" onclick="showView('shop-home'); return false;" class="text-3xl font-extrabold tracking-tight text-slate-800 hover:scale-105 transition-transform">
+                Slipp<span class="text-pink-400">.</span>
+            </a>
+            
+            <nav class="hidden md:flex space-x-8 items-center">
+                <ul class="flex space-x-8 font-bold text-slate-600">
+                    <li><a href="#" onclick="showView('shop-home'); return false;" class="hover:text-pink-500 transition-colors">Shop</a></li>
+                    <li><a href="#about" class="hover:text-pink-500 transition-colors">About</a></li>
+                    <li><a href="#contact" class="hover:text-pink-500 transition-colors">Contact</a></li>
+                </ul>
+                <button id="cart-btn" class="relative p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5">
+                    <i class="fas fa-shopping-bag text-xl text-slate-700"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-pink-400 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </button>
+            </nav>
+
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-700">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-20"></div>
+
+    <!-- Main Content Container -->
+    <main id="main-content">
+        
+        <!-- VIEW: Shop Home -->
+        <div id="view-shop-home" class="view-section active">
+            <!-- Hero -->
+            <section class="py-20 relative overflow-hidden">
+                <div class="absolute top-10 left-10 w-64 h-64 bg-slipp-yellow rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-float"></div>
+                <div class="absolute bottom-10 right-10 w-64 h-64 bg-slipp-pink rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-float" style="animation-delay: 2s;"></div>
+                
+                <div class="container mx-auto px-6 text-center relative z-10">
+                    <span class="inline-block py-1 px-4 rounded-full bg-slipp-lime text-lime-800 text-sm font-bold mb-4 tracking-wide uppercase">Shop Now</span>
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 leading-tight">
+                        Turn your shower<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">into your happy hour</span>
+                    </h1>
+                    <p class="max-w-2xl mx-auto text-lg text-slate-600 mb-12">
+                        Pick your vibe. We have got the bubbles, butters, and bombs to match your mood.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Categories Grid -->
+            <section class="pb-20">
+                <div class="container mx-auto px-6">
+                    <div id="categories-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- VIEW: The Squeakeasy -->
+        <div id="view-squeakeasy" class="view-section">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-teal-100 to-purple-100 py-16">
+                <div class="container mx-auto px-6 text-center">
+                    <button onclick="showView('shop-home')" class="mb-6 text-slate-600 hover:text-slate-900 font-bold flex items-center justify-center mx-auto gap-2">
+                        <i class="fas fa-arrow-left"></i> Back to Shop
+                    </button>
+                    <i class="fas fa-shower text-5xl text-teal-600 mb-4 block animate-bounce-slight"></i>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4">The Squeakeasy</h1>
+                    <p class="text-xl text-slate-600">Bath & Shower Goodies for the cleanest clean.</p>
+                </div>
+            </div>
+
+            <!-- Sub Navigation -->
+            <div class="sticky top-20 bg-white border-b border-slate-200 z-40 shadow-sm">
+                <div class="container mx-auto px-6 py-4">
+                    <nav class="flex flex-wrap justify-center gap-6 md:gap-12 font-bold text-slate-600 text-sm md:text-base">
+                        <a href="#soap-wash" class="sub-nav-link hover:text-teal-600">Soap & Body Wash</a>
+                        <a href="#bath-salts" class="sub-nav-link hover:text-teal-600">Bath Salts & Scrubs</a>
+                        <a href="#fizz-bombs" class="sub-nav-link hover:text-teal-600">Shower Fizz & Bath Bombs</a>
+                        <a href="#shampoo" class="sub-nav-link hover:text-teal-600">Shampoo & Conditioner</a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="py-12 space-y-20">
+                <!-- Section: Soap & Body Wash -->
+                <section id="soap-wash" class="container mx-auto px-6">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="h-1 w-12 bg-teal-400 rounded-full"></div>
+                        <h2 class="text-3xl font-bold text-slate-900">Soap & Body Wash</h2>
+                    </div>
+                    <div id="squeakeasy-soap-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                </section>
+
+                <!-- Section: Bath Salts -->
+                <section id="bath-salts" class="container mx-auto px-6 bg-slate-100 py-16 -mx-0">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="h-1 w-12 bg-purple-400 rounded-full"></div>
+                        <h2 class="text-3xl font-bold text-slate-900">Bath Salts & Scrubs</h2>
+                    </div>
+                    <div id="squeakeasy-salts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                </section>
+
+                <!-- Section: Fizz & Bombs -->
+                <section id="fizz-bombs" class="container mx-auto px-6">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="h-1 w-12 bg-pink-400 rounded-full"></div>
+                        <h2 class="text-3xl font-bold text-slate-900">Shower Fizz & Bath Bombs</h2>
+                    </div>
+                    <div id="squeakeasy-fizz-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                </section>
+
+                <!-- Section: Hair -->
+                <section id="shampoo" class="container mx-auto px-6 bg-slate-100 py-16 -mx-0">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="h-1 w-12 bg-yellow-400 rounded-full"></div>
+                        <h2 class="text-3xl font-bold text-slate-900">Shampoo & Conditioner</h2>
+                    </div>
+                    <div id="squeakeasy-hair-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                </section>
+            </div>
+        </div>
+
+        <!-- VIEW: City Slicker -->
+        <div id="view-city-slicker" class="view-section">
+            <div class="bg-gradient-to-r from-yellow-100 to-blue-100 py-16">
+                <div class="container mx-auto px-6 text-center">
+                    <button onclick="showView('shop-home')" class="mb-6 text-slate-600 hover:text-slate-900 font-bold flex items-center justify-center mx-auto gap-2">
+                        <i class="fas fa-arrow-left"></i> Back to Shop
+                    </button>
+                    <i class="fas fa-city text-5xl text-blue-600 mb-4 block animate-bounce-slight"></i>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4">City Slicker</h1>
+                    <p class="text-xl text-slate-600">Moisture & Glow for the urban jungle.</p>
+                </div>
+            </div>
+
+            <div class="py-12 space-y-20">
+                <!-- Body Butters -->
+                <section class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+                        <i class="fas fa-spa text-yellow-500"></i> Body Butters
+                    </h2>
+                    <div id="city-butters-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                </section>
+
+                <!-- Body Oils -->
+                <section class="container mx-auto px-6 bg-slate-100 py-16 -mx-0">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+                        <i class="fas fa-tint text-blue-500"></i> Body Oils
+                    </h2>
+                    <div id="city-oils-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                </section>
+
+                <!-- Fragrance -->
+                <section class="container mx-auto px-6 pb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+                        <i class="fas fa-wind text-purple-500"></i> Body Fragrance
+                    </h2>
+                    <div id="city-fragrance-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                </section>
+            </div>
+        </div>
+
+        <!-- VIEW: Scenter of Attention -->
+        <div id="view-scenter" class="view-section">
+            <div class="bg-gradient-to-r from-pink-100 to-lime-100 py-16">
+                <div class="container mx-auto px-6 text-center">
+                    <button onclick="showView('shop-home')" class="mb-6 text-slate-600 hover:text-slate-900 font-bold flex items-center justify-center mx-auto gap-2">
+                        <i class="fas fa-arrow-left"></i> Back to Shop
+                    </button>
+                    <i class="fas fa-star text-5xl text-pink-600 mb-4 block animate-bounce-slight"></i>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4">Scenter of Attention</h1>
+                    <p class="text-xl text-slate-600">Smell like a dream, be the main character.</p>
+                </div>
+            </div>
+
+            <div class="container mx-auto px-6 py-12">
+                <div id="scenter-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12 mt-20">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold mb-4">Slipp.</h3>
+            <p class="text-slate-400 mb-6">the body bar</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="hover:text-pink-400 transition-colors"><i class="fab fa-instagram text-2xl"></i></a>
+                <a href="#" class="hover:text-blue-400 transition-colors"><i class="fab fa-twitter text-2xl"></i></a>
+            </div>
+            <p class="text-slate-600 text-sm">&copy; 2023 Slipp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Data ---
+
+        const categories = [
+            {
+                "id": "squeakeasy",
+                "name": "The Squeakeasy",
+                "description": "Bath bombs, salts, scrubs & suds.",
+                "color": "from-teal-200 to-purple-200",
+                "icon": "fa-bath",
+                "image": "https://picsum.photos/600/400?random=101"
+            },
+            {
+                "id": "city-slicker",
+                "name": "City Slicker",
+                "description": "Butters, oils & urban edge.",
+                "color": "from-yellow-200 to-blue-200",
+                "icon": "fa-building",
+                "image": "https://picsum.photos/600/400?random=102"
+            },
+            {
+                "id": "scenter",
+                "name": "Scenter of Attention",
+                "description": "Fragrances that turn heads.",
+                "color": "from-pink-200 to-lime-200",
+                "icon": "fa-star",
+                "image": "https://picsum.photos/600/400?random=103"
+            }
+        ];
+
+        const squeakeasyData = {
+            "soap": [
+                { "name": "Morning Brew Bar", "price": "$8", "scent": "Coffee & Vanilla", "color": "border-t-4 border-amber-600", "img": "https://picsum.photos/300/300?random=201" },
+                { "name": "Detox Charcoal", "price": "$9", "scent": "Eucalyptus & Tea Tree", "color": "border-t-4 border-gray-800", "img": "https://picsum.photos/300/300?random=202" },
+                { "name": "Honey Oat", "price": "$8", "scent": "Almond Milk", "color": "border-t-4 border-yellow-400", "img": "https://picsum.photos/300/300?random=203" },
+                { "name": "Citrus Blast", "price": "$8", "scent": "Lemon & Grapefruit", "color": "border-t-4 border-orange-400", "img": "https://picsum.photos/300/300?random=204" }
+            ],
+            "salts": [
+                { "name": "Lavender Soak", "price": "$12", "scent": "Lavender & Chamomile", "color": "border-t-4 border-purple-400", "img": "https://picsum.photos/300/300?random=205" },
+                { "name": "Muscle Rescue", "price": "$14", "scent": "Peppermint & Arnica", "color": "border-t-4 border-green-500", "img": "https://picsum.photos/300/300?random=206" },
+                { "name": "Rose Petal Scrub", "price": "$16", "scent": "Rose & Coconut", "color": "border-t-4 border-pink-400", "img": "https://picsum.photos/300/300?random=207" },
+                { "name": "Detox Salt", "price": "$12", "scent": "Sea Salt & Sage", "color": "border-t-4 border-teal-500", "img": "https://picsum.photos/300/300?random=208" }
+            ],
+            "fizz": [
+                { "name": "Surprise Fizz", "price": "$6", "scent": "Random Rainbow", "color": "border-t-4 border-pink-500", "img": "https://picsum.photos/300/300?random=209" },
+                { "name": "Sleepy Time Bomb", "price": "$7", "scent": "Lavender", "color": "border-t-4 border-indigo-400", "img": "https://picsum.photos/300/300?random=210" },
+                { "name": "Eucalyptus Shower Steamer", "price": "$5", "scent": "Menthol", "color": "border-t-4 border-green-400", "img": "https://picsum.photos/300/300?random=211" },
+                { "name": "Galaxy Bomb", "price": "$8", "scent": "Blackberry", "color": "border-t-4 border-purple-600", "img": "https://picsum.photos/300/300?random=212" }
+            ],
+            "hair": [
+                { "name": "Citrus Clarifying Shampoo", "price": "$14", "scent": "Lemon", "color": "border-t-4 border-yellow-400", "img": "https://picsum.photos/300/300?random=213" },
+                { "name": "Silk Conditioner", "price": "$14", "scent": "Coconut", "color": "border-t-4 border-teal-400", "img": "https://picsum.photos/300/300?random=214" },
+                { "name": "Charcoal Shampoo", "price": "$15", "scent": "Tea Tree", "color": "border-t-4 border-gray-700", "img": "https://picsum.photos/300/300?random=215" },
+                { "name": "Rose Conditioner", "price": "$14", "scent": "Rose", "color": "border-t-4 border-pink-500", "img": "https://picsum.photos/300/300?random=216" }
+            ]
+        };
+
+        const citySlickerData = {
+            "butters": [
+                { "name": "Whipped Shea", "price": "$22", "desc": "Ultra rich moisture", "color": "bg-yellow-100", "img": "https://picsum.photos/400/400?random=301" },
+                { "name": "Cocoa Dream", "price": "$24", "desc": "Chocolate bliss", "color": "bg-amber-100", "img": "https://picsum.photos/400/400?random=302" },
+                { "name": "Mango Tango", "price": "$22", "desc": "Tropical hydration", "color": "bg-orange-100", "img": "https://picsum.photos/400/400?random=303" }
+            ],
+            "oils": [
+                { "name": "Glow Serum", "price": "$28", "desc": "Vitamin E & Jojoba", "color": "bg-yellow-50", "img": "https://picsum.photos/400/400?random=304" },
+                { "name": "Midnight Oil", "price": "$32", "desc": "Calming lavender", "color": "bg-purple-100", "img": "https://picsum.photos/400/400?random=305" },
+                { "name": "Sun Kissed", "price": "$28", "desc": "Bronzing shimmer", "color": "bg-orange-50", "img": "https://picsum.photos/400/400?random=306" }
+            ],
+            "fragrance": [
+                { "name": "Urban Musk", "price": "$45", "desc": "Sandalwood & Amber", "color": "bg-slate-200", "img": "https://picsum.photos/400/400?random=307" },
+                { "name": "Concrete Jungle", "price": "$45", "desc": "Fresh Basil & Mint", "color": "bg-green-100", "img": "https://picsum.photos/400/400?random=308" },
+                { "name": "Rooftop Party", "price": "$48", "desc": "Champagne & Peach", "color": "bg-pink-100", "img": "https://picsum.photos/400/400?random=309" }
+            ]
+        };
+
+        const scenterData = [
+            { "name": "Signature Mist", "price": "$35", "desc": "Your daily aura", "color": "bg-pink-200", "img": "https://picsum.photos/400/400?random=401" },
+            { "name": "Roll-On Love", "price": "$18", "desc": "Purse perfect", "color": "bg-purple-200", "img": "https://picsum.photos/400/400?random=402" },
+            { "name": "Hair Perfume", "price": "$24", "desc": "Scented strands", "color": "bg-blue-200", "img": "https://picsum.photos/400/400?random=403" },
+            { "name": "Room Spray", "price": "$20", "desc": "For your space", "color": "bg-teal-200", "img": "https://picsum.photos/400/400?random=404" },
+            { "name": "Linen Mist", "price": "$22", "desc": "Sleep tight", "color": "bg-indigo-200", "img": "https://picsum.photos/400/400?random=405" },
+            { "name": "Car Freshener", "price": "$12", "desc": "Drive happy", "color": "bg-yellow-200", "img": "https://picsum.photos/400/400?random=406" }
+        ];
+
+        // --- Render Functions ---
+
+        function renderCategories() {
+            const container = document.getElementById("categories-grid");
+            container.innerHTML = categories.map(cat => `
+                <div onclick="showView('${cat.id}')" class="category-card group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl">
+                    <div class="h-64 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gradient-to-br ${cat.color} opacity-80 mix-blend-multiply"></div>
+                        <img src="${cat.image}" alt="${cat.name}" class="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas ${cat.icon} text-6xl text-white drop-shadow-lg"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 text-center">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">${cat.name}</h3>
+                        <p class="text-slate-600 mb-4">${cat.description}</p>
+                        <span class="inline-flex items-center font-bold text-slate-900 group-hover:translate-x-2 transition-transform">
+                            Explore <i class="fas fa-arrow-right ml-2 text-pink-500"></i>
+                        </span>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function renderProductCard(item) {
+            return `
+                <div class="product-card bg-white rounded-2xl p-4 ${item.color || ''} shadow-sm border border-slate-100">
+                    <div class="relative aspect-square rounded-xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover">
+                        <button onclick="addToCart()" class="absolute bottom-2 right-2 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">${item.name}</h4>
+                    <p class="text-sm text-slate-500 mb-2">${item.scent || item.desc}</p>
+                    <p class="font-bold text-slate-900">${item.price}</p>
+                </div>
+            `;
+        }
+
+        function renderSqueakeasy() {
+            document.getElementById("squeakeasy-soap-grid").innerHTML = squeakeasyData.soap.map(renderProductCard).join("");
+            document.getElementById("squeakeasy-salts-grid").innerHTML = squeakeasyData.salts.map(renderProductCard).join("");
+            document.getElementById("squeakeasy-fizz-grid").innerHTML = squeakeasyData.fizz.map(renderProductCard).join("");
+            document.getElementById("squeakeasy-hair-grid").innerHTML = squeakeasyData.hair.map(renderProductCard).join("");
+        }
+
+        function renderCitySlicker() {
+            document.getElementById("city-butters-grid").innerHTML = citySlickerData.butters.map(renderProductCard).join("");
+            document.getElementById("city-oils-grid").innerHTML = citySlickerData.oils.map(renderProductCard).join("");
+            document.getElementById("city-fragrance-grid").innerHTML = citySlickerData.fragrance.map(renderProductCard).join("");
+        }
+
+        function renderScenter() {
+            document.getElementById("scenter-grid").innerHTML = scenterData.map(renderProductCard).join("");
+        }
+
+        // --- Logic ---
+
+        function showView(viewName) {
+            // Hide all views
+            document.querySelectorAll(".view-section").forEach(el => {
+                el.classList.remove("active");
+            });
+            
+            // Show target view
+            const target = document.getElementById("view-" + viewName);
+            if (target) {
+                target.classList.add("active");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+
+            // Specific render triggers on first view
+            if (viewName === "squeakeasy") renderSqueakeasy();
+            if (viewName === "city-slicker") renderCitySlicker();
+            if (viewName === "scenter") renderScenter();
+        }
+
+        let cartCount = 0;
+        function addToCart() {
+            cartCount++;
+            const badge = document.getElementById("cart-count");
+            badge.innerText = cartCount;
+            badge.classList.add("scale-125");
+            setTimeout(() => badge.classList.remove("scale-125"), 200);
+        }
+
+        // Mobile menu toggle
+        document.getElementById("mobile-menu-btn").addEventListener("click", function() {
+            // Simple alert for demo, or implement mobile menu overlay
+            alert("Mobile menu would toggle here!");
+        });
+
+        // Initialize
+        document.addEventListener("DOMContentLoaded", () => {
+            renderCategories();
+        });
+
+    </script>
+</body>
+</html>
